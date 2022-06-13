@@ -1,0 +1,32 @@
+a {
+    color: white;
+}
+
+.navbar {
+    padding-top: 140px;
+    height: 50px;
+    width: 100%;
+    background-color: #170d48;
+}
+
+.navbar_container {
+    max-width: 1200px;
+    height: 100%;
+    margin: auto;
+}
+
+.navbar_content {
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.navbar_content_item {
+    width: 25%;
+    text-align: center;
+}
+
+.navbar_content_item :hover {
+    color: red;
+}
