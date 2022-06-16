@@ -3,6 +3,7 @@ import connectDatabase from './config/MongoDB.js'
 import dotenv from 'dotenv'
 import ImportData from './DataImport.js'
 import studentRoute from './routes/StudentRoutes.js'
+import planNewRoute from './routes/PlanNewRoutes.js'
 
 const app = express()
 
@@ -11,6 +12,7 @@ connectDatabase()
 
 app.use("/import", ImportData)
 app.use("/students", studentRoute)
+app.use("/plannews", planNewRoute)
 
 
 app.get("/", (req, res) => {

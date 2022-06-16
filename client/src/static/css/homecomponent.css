@@ -42,11 +42,13 @@
 .homebody_content_plan {
     width: 50%;
     padding-right: 20px;
+    border-bottom: 2px solid rgb(221, 221, 221);
 }
 
 .homebody_content_news {
     width: 50%;
     padding-left: 20px;
+    border-bottom: 2px solid rgb(221, 221, 221);
 }
 
 .homebody_plan_title {
@@ -55,8 +57,19 @@
     font-weight: 600;
     font-size: 20px;
     padding-bottom: 10px;
-    margin-bottom: 20px;
     border-bottom: 4px solid rgb(221, 221, 221);
+}
+
+.homebody_plan_content {
+    height: 380px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.homebody_news_content {
+    height: 380px;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .homebody_news_title {
@@ -65,6 +78,38 @@
     font-weight: 600;
     font-size: 20px;
     padding-bottom: 10px;
-    margin-bottom: 20px;
     border-bottom: 4px solid rgb(221, 221, 221)
+}
+
+.plan_item {
+    height: 80px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.plan_item a {
+    color: rgb(66, 66, 66);
+}
+
+.plan_item a :hover {
+    color: rgb(0, 8, 255);
+}
+
+.plan_item_time {
+    width: 30%;
+    height: 80px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    background-color: rgb(221, 221, 221);
+    margin-right: 10px;
+    border-radius: 3px;
+}
+
+.plan_item_title h4 {
+    margin: 0px;
+    margin-bottom: 10px;
+    font-size: 18px;
 }
