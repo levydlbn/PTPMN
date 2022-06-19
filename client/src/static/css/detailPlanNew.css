@@ -1,0 +1,8 @@
+.DetailPlanNew_container {}
+
+.DetailPlanNew_content {
+    max-width: 1200px;
+    min-height: 400px;
+    margin: auto;
+    padding: 20px 40px;
+}

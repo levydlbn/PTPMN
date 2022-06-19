@@ -36,7 +36,7 @@ const HomeContent = () => {
                 <div className='homebody_plan_content'>
                   {planList.map(item => <div className='plan_item'>
                     <div className='plan_item_time'>{item.THOIGIAN}</div>
-                    <Link to={`/displayKehoach/${item.TIEUDE}`}>
+                    <Link to={`/displayKehoach/${item._id}`}>
                     <div className='plan_item_title'>
                       <h4>{item.TIEUDE}</h4>
                       <span>{item.THOIGIAN}</span>
@@ -50,7 +50,7 @@ const HomeContent = () => {
                 <div className='homebody_news_content'>
                 {newList.map(item => <div className='plan_item'>
                     <div className='plan_item_time'>{item.THOIGIAN}</div>
-                    <Link to={`displayTintuc/${item.TIEUDE}`}>
+                    <Link to={`displayTintuc/${item._id}`}>
                       <div className='plan_item_title'>
                         <h4>{item.TIEUDE}</h4>
                         <span>{item.THOIGIAN}</span>

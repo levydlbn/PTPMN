@@ -10,7 +10,7 @@ const HomeScreen = () => {
     <>
         <Header />
         <Navbar />
-        <div className='home_body'>
+        <div style={{paddingTop: 190}} className='home_body'>
           <Banner/>
           <HomeContent/>
         </div>

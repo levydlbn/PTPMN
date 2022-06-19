@@ -9,7 +9,7 @@ const Navbar = () => {
       <div className='navbar_container'>
         <div className='navbar_content'>
            <div className='navbar_content_item'>
-             <Link to='/thongbao'>THÔNG BÁO</Link>
+             <Link to='/displayThongbao'>THÔNG BÁO</Link>
            </div>
            <div className='navbar_content_item'>
              <Link to='/quydinh'>QUY ĐỊNH</Link>

@@ -25,7 +25,7 @@ export const planNewDetailReducer = (state = { plannew: {} }, action) => {
         case PLANNEW_DETAIL_REQUEST:
             return {...state, loading: true }
         case PLANNEW_DETAIL_SUCCESS:
-            return { loading: false, plannews: action.payload }
+            return { loading: false, plannew: action.payload }
         case PLANNEW_DETAIL_FAIL:
             return { loading: false, error: action.payload }
         default:
