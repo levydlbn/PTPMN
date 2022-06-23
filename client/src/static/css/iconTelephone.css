@@ -1,0 +1,103 @@
+.icon__telephone {
+    width: 200px;
+    height: 100px;
+    position: fixed;
+    bottom: 10px;
+    left: 36px;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+}
+
+.icon__telephone-outside2 {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: rgb(29, 76, 244);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: outSideIcon1 2s ease infinite;
+}
+
+@keyframes outSideIcon1 {
+    from {
+        width: 60px;
+        height: 60px;
+    }
+    to {
+        width: 76px;
+        height: 76px;
+    }
+}
+
+.icon__telephone-outside1 {
+    width: 66px;
+    height: 66px;
+    border-radius: 50%;
+    border: 1px solid rgb(71, 10, 255);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: outSideIcon2 2s ease infinite;
+}
+
+@keyframes outSideIcon2 {
+    from {
+        width: 66px;
+        height: 66px;
+    }
+    to {
+        width: 90px;
+        height: 90px;
+    }
+}
+
+.icon__telephone-container {
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    background-color: rgb(254, 255, 254);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.icon__telephone-img {
+    width: 26px;
+    height: 26px;
+    animation: iconTelephone 0.8s linear infinite;
+    transition: transform infinite;
+}
+
+@keyframes iconTelephone {
+    from {
+        opacity: 0.5;
+        width: 26px;
+        height: 26px;
+    }
+    to {
+        opacity: 1;
+        width: 34px;
+        height: 34px;
+        transform: rotateZ(16deg);
+    }
+}
+
+.icon__telephone-text {
+    width: 130px;
+    height: 30px;
+    background-color: rgb(47, 10, 255);
+    color: white;
+    border-radius: 6px;
+    margin-left: -25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.icon__telephone-text p {
+    font-size: 16px;
+    color: rgb(255, 255, 255);
+}

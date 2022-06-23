@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom'
 import Footer from '../components/Footer'
 
 import Header from '../components/Header'
+import Loading from '../components/Loading'
 import Navbar from '../components/Navbar'
 import { listPlanNewDetails } from '../redux/actions/PlanNewActions'
 
@@ -31,6 +32,8 @@ const DetailPlanNew = () => {
     <div>
       <Header />
       <Navbar />
+      {loading === true
+       ? <Loading /> :
       <div style={{paddingTop: 190}} className='DetailPlanNew_container'>
         <div className='DetailPlanNew_content'>
           <h2>{plannew.TIEUDE}</h2>
@@ -38,9 +41,11 @@ const DetailPlanNew = () => {
           <p>{plannew.THOIGIAN}</p>
         </div>
       </div>
+      }
       <Footer />
     </div>
   )
 }
+
 
 export default DetailPlanNew

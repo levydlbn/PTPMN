@@ -2,8 +2,11 @@ import express from 'express'
 import asyncHandler from 'express-async-handler'
 import Score from '../models/ScoreModel.js'
 import Student from '../models/StudentModel.js'
+import bcrypt from 'bcrypt'
 
 const studentRoute = express.Router()
+
+
 
 //get all student
 studentRoute.get("/", asyncHandler(
@@ -12,6 +15,88 @@ studentRoute.get("/", asyncHandler(
         res.json(students)
     }
 ))
+
+//get single student
+studentRoute.get("/:id", asyncHandler(
+    async(req, res) => {
+        const student = await Student.findById(req.params.id).populate([{ path: 'MALOP', strictPopulate: false }])
+        if (student) {
+            res.json(student)
+        } else {
+            res.status(404)
+            throw new Error("Student not found")
+        }
+    }
+))
+
+
+
+
+//add student
+studentRoute.post("/addStudent", asyncHandler(
+    async(req, res) => {
+
+        try {
+            const salt = await bcrypt.genSalt(10)
+            const hashed = await bcrypt.hash(req.body.PASSWORD, salt)
+            const newStudent = await new Student({
+                MALOP: req.body.MALOP,
+                HOHS: req.body.HOHS,
+                TENHS: req.body.TENHS,
+                TENDN: req.body.TENDN,
+                PASSWORD: hashed,
+                GIOITINH: req.body.GIOITINH,
+                NGAYSINH: req.body.NGAYSINH,
+            })
+
+            const studn = await newStudent.save()
+            res.status(200).json(studn)
+
+        } catch (error) {
+            res.status(500).send(error)
+        }
+    }))
+
+//update single student
+studentRoute.post("/updateStudent/:id", asyncHandler(
+
+    async(req, res) => {
+        try {
+            const upStu = await Student.findByIdAndUpdate(req.params.id, {
+                $set: {
+                    MALOP: req.body.MALOP,
+                    HOHS: req.body.HOHS,
+                    TENHS: req.body.TENHS,
+                    TENDN: req.body.TENDN,
+                    PASSWORD: req.body.PASSWORD,
+                    GIOITINH: req.body.GIOITINH,
+                    NGAYSINH: req.body.NGAYSINH,
+                }
+            })
+
+            const listStudent = await Student.find()
+            res.status(200).json(upStu)
+
+        } catch (error) {
+            res.status(500).send(error)
+        }
+
+    }
+))
+
+// remove student
+studentRoute.post("/removeStudent/:id", asyncHandler(
+    async(req, res) => {
+        try {
+            const removeStu = await Student.findByIdAndRemove(req.params.id)
+            const listStudent = await Student.find()
+            res.status(200).json(removeStu)
+        } catch (error) {
+            res.status(500).send(error)
+        }
+    }
+))
+
 
 //get all score
 studentRoute.get("/scores", asyncHandler(
@@ -29,19 +114,8 @@ studentRoute.get("/scores/:id", asyncHandler(
     }
 ))
 
-//get single product
-studentRoute.get("/:id", asyncHandler(
-    async(req, res) => {
-        const student = await Student.findById(req.params.id).populate([{ path: 'MALOP', strictPopulate: false }])
-        if (student) {
-            res.json(student)
-        } else {
-            res.status(404)
-            throw new Error("Student not found")
-        }
-    }
-))
-
+//add scores
+studentRoute.post("/addScores/")
 
 
 

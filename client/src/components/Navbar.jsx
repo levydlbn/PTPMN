@@ -12,7 +12,7 @@ const Navbar = () => {
              <Link to='/displayThongbao'>THÔNG BÁO</Link>
            </div>
            <div className='navbar_content_item'>
-             <Link to='/quydinh'>QUY ĐỊNH</Link>
+             <Link to='/displayQuydinh'>QUY ĐỊNH</Link>
            </div>
            <div className='navbar_content_item'>
              <Link to='/tracuu'>TRA CỨU</Link>

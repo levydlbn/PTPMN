@@ -8,6 +8,10 @@ import Navbar from '../components/Navbar'
 
 import '../static/css/notification.css'
 import { Link } from 'react-router-dom'
+import { useEffect } from 'react'
+import { listPlanNew } from '../redux/actions/PlanNewActions'
+import IconTelephone from '../components/IconTelephone'
+import Loading from '../components/Loading'
 
 const Notification = () => {
 
@@ -16,6 +20,13 @@ const Notification = () => {
   const planNewList = useSelector(state => state.planNewList)
   
   const {loading, error, plannews} = planNewList
+
+  useEffect(() => {
+    dispatch(listPlanNew())
+  }, [dispatch])
+
+  
+
 
   const [pageNumber, setPageNumber] = useState(0)
 
@@ -36,6 +47,8 @@ const Notification = () => {
    </div>
   ))
 
+
+
   const pageCount = Math.ceil(plannews.length / plannewPerPage)
 
     const changePage = ({ selected }) => {
@@ -46,6 +59,8 @@ const Notification = () => {
     <div>
         <Header />
         <Navbar />
+        {loading === true 
+        ? <Loading /> : 
         <div className="thongbao_container" style={{display: 'flex', justifyContent: 'center', flexDirection: 'column'}}>
             <div style={{maxWidth: 1200, margin: 'auto', padding: '20px 40px'}} className="thongbao_content">
                 <h2 style={{marginTop: 0, marginBottom: 26, paddingTop: 200, paddingBottom: 20,
@@ -66,6 +81,8 @@ const Notification = () => {
             activeClassName = { "paginationActive" }
             />
         </div>
+        }
+        <IconTelephone />
         <Footer />
     </div>
   )

@@ -5,6 +5,7 @@ import { listPlanNew } from '../../redux/actions/PlanNewActions'
 import {Link} from 'react-router-dom'
 
 import '../../static/css/homecomponent.css'
+import Loading from '../Loading'
 
 const HomeContent = () => {
 
@@ -29,6 +30,8 @@ const HomeContent = () => {
           <div className='homebody_navbar'>
             <div className='homebody_navbar_item'>Tổng hợp</div>
           </div>
+          {loading === true ?
+           <Loading /> :
           <div className='homebody_content'>
             <div className='homebody_content_container'>
               <div className='homebody_content_plan'>
@@ -61,6 +64,7 @@ const HomeContent = () => {
               </div>
             </div>
           </div>
+          }
       </div>
     </div> 
   )

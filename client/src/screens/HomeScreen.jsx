@@ -3,6 +3,7 @@ import Footer from '../components/Footer'
 import Header from '../components/Header'
 import Banner from '../components/homeComponent/Banner'
 import HomeContent from '../components/homeComponent/HomeContent'
+import IconTelephone from '../components/IconTelephone'
 import Navbar from '../components/Navbar'
 
 const HomeScreen = () => {
@@ -14,6 +15,7 @@ const HomeScreen = () => {
           <Banner/>
           <HomeContent/>
         </div>
+        <IconTelephone />
         <Footer />
     </>
   )

@@ -5,23 +5,36 @@ const studentSchema = mongoose.Schema({
     MALOP: {
         type: mongoose.Schema.Types.ObjectId,
         require: true,
-        ref: "Class"
+        ref: "Class",
     },
     HOHS: {
         type: String,
-        require: true
+        require: true,
     },
     TENHS: {
         type: String,
-        require: true
+        require: true,
+    },
+    TENDN: {
+        type: String,
+        require: true,
+    },
+    PASSWORD: {
+        type: String,
+        require: true,
     },
     GIOITINH: {
         type: String,
-        require: true
+        require: true,
     },
     NGAYSINH: {
-        type: Date,
-        require: true
+        type: String,
+        require: true,
+    },
+    ADMIN: {
+        type: Boolean,
+        require: true,
+        default: false,
     }
 
 }, {

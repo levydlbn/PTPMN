@@ -14,6 +14,8 @@ const Banner = () => {
   //    setImgBanner(imgBanner === img[0] ? img[1] : img[0])
   // }, 5000)
 
+  console.log(imgBanner)
+
   return (
     <div style={{display: 'flex', justifyContent: 'center',}} className='banner'>
         <div style={{ width: 1200, height: 400}}  className='banner_container'>

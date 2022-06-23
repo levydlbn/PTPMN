@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {Link} from 'react-router-dom'
 
 import '../static/css/header.css'
@@ -7,6 +7,11 @@ import logoSchool from '../static/image/LOGO_HAM_CUONG2.jpg.jpg'
 import searchIcon from '../static/image/searchIcon.png'
 
 const Header = () => {
+
+  const [searchInput, setSearchInput] = useState("")
+
+  console.log(searchInput)
+
   return (
     <div className='header'>
       <div className='header_container'>
@@ -21,7 +26,7 @@ const Header = () => {
             </div>
           </Link>
           <div className='header_content_search'>
-            <input className='header_search_input' placeholder='Tìm kiếm'/>
+            <input className='header_search_input' placeholder='Tìm kiếm' onChange={(e) => setSearchInput(e.target.value)}/>
             <button className='header_search_btn'>
               <img src={searchIcon} style={{width: 20, height: 20}} className='header_seachIcon' alt='asdfsdf'/>
             </button>

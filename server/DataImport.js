@@ -7,6 +7,10 @@ import Class from './models/ClassModel.js'
 import PlanNew from './models/PlanNewModel.js'
 import Score from './models/ScoreModel.js'
 import Student from './models/StudentModel.js'
+import bcrypt from 'bcrypt'
+import Teacher from './models/TeacherModel.js'
+import teachers from './data/teacher.js'
+
 
 const ImportData = express.Router()
 
@@ -33,6 +37,33 @@ ImportData.post("/plannew", (async(req, res) => {
     const importPlanNew = await PlanNew.insertMany(planNews)
     res.send({ importPlanNew })
 }))
+
+ImportData.post("/addStudent", async(req, res) => {
+
+    try {
+        const newStudent = await new Student({
+            MALOP: req.body.MALOP,
+            HOHS: req.body.HOHS,
+            TENHS: req.body.TENHS,
+            TENDN: req.body.TENDN,
+            PASSWORD: req.body.PASSWORD,
+            GIOITINH: req.body.GIOITINH,
+            NGAYSINH: req.body.NGAYSINH,
+        })
+
+        const studn = await newStudent.save()
+        res.status(200).json(studn)
+
+    } catch (error) {
+        res.status(500).send(error)
+    }
+})
+
+ImportData.post("/addTeacher", async(req, res) => {
+    await Teacher.remove({})
+    const importTeacher = await Teacher.insertMany(teachers)
+    res.send({ importTeacher })
+})
 
 
 export default ImportData

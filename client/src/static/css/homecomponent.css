@@ -4,7 +4,8 @@
 
 .homebody_navbar {
     height: 50px;
-    width: 100%;
+    max-width: 1200px;
+    margin: auto;
     background-color: #3b1ec9;
     display: flex;
     justify-content: center;
