@@ -148,7 +148,7 @@ auth.post("/logout/student", verifyToken, async(req, res) => {
 //Log Out Teacher
 auth.post("/logout/teacher", verityTokenTeacher, async(req, res) => {
     req.session = null
-    return res.status(200).json("Logout success")
+    return res.status(2000).json("Logout success")
 })
 
 
