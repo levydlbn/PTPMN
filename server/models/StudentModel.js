@@ -31,10 +31,10 @@ const studentSchema = mongoose.Schema({
         type: String,
         require: true,
     },
-    ADMIN: {
-        type: Boolean,
+    USERTYPE: {
+        type: String,
         require: true,
-        default: false,
+        default: "student",
     }
 
 }, {

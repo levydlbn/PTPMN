@@ -5,9 +5,10 @@ import dotenv from 'dotenv'
 import ImportData from './DataImport.js'
 import studentRoute from './routes/StudentRoutes.js'
 import planNewRoute from './routes/PlanNewRoutes.js'
-import login from './routes/AuthRoute.js'
 import teacherRoute from './routes/TeacherRoute.js'
 import adminRoute from './routes/AdminRoute.js'
+// import verityToken from './Middleware/verifyToken.js'
+import auth from './routes/AuthRoute.js'
 
 const app = express()
 
@@ -24,7 +25,7 @@ app.use("/admin", adminRoute)
 app.use("/students", studentRoute)
 app.use("/teacher", teacherRoute)
 app.use("/plannews", planNewRoute)
-app.use("/login", login)
+app.use("/auth", auth)
 
 
 app.get("/", (req, res) => {

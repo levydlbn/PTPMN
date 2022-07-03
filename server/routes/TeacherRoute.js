@@ -38,8 +38,6 @@ teacherRoute.post("/addTeacher", asyncHandler(
                 TENGV: req.body.TENGV,
                 TENDN: req.body.TENDN,
                 PASSWORD: hashed,
-                GIOITINH: req.body.GIOITINH,
-                NGAYSINH: req.body.NGAYSINH,
             })
 
             const neTe = await newTeacher.save()

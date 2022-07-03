@@ -10,6 +10,9 @@ import Student from './models/StudentModel.js'
 import bcrypt from 'bcrypt'
 import Teacher from './models/TeacherModel.js'
 import teachers from './data/teacher.js'
+import SchoolYear from './models/SchoolYearModel.js'
+import schoolyears from './data/schoolYears.js'
+import verifyToken from './Middleware/verifyToken.js'
 
 
 const ImportData = express.Router()
@@ -35,6 +38,12 @@ ImportData.post("/scores", (async(req, res) => {
 ImportData.post("/plannew", (async(req, res) => {
     await PlanNew.remove({})
     const importPlanNew = await PlanNew.insertMany(planNews)
+    res.send({ importPlanNew })
+}))
+
+ImportData.post("/schoolyear", (async(req, res) => {
+    await SchoolYear.remove({})
+    const importPlanNew = await SchoolYear.insertMany(schoolyears)
     res.send({ importPlanNew })
 }))
 

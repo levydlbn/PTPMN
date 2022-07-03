@@ -5,15 +5,31 @@ import logoSchool from '../static/image/LOGO_HAM_CUONG2.jpg.jpg'
 import '../static/css/login.css'
 import Footer from '../components/Footer'
 import { useState } from 'react'
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { loginTeacher } from '../redux/actions/AuthAction'
 
 
-const Login = () => {
+const LoginTeacher = () => {
 
 //test vo van
 
-  const [usetest, setUsetest] = useState("sdf")
-  console.log(usetest)
+const [userTc, setUserTc] = useState("")
+const [password, setPassword] = useState("") 
+
+const dispatch = useDispatch()
+const navigate = useNavigate()
+
+
+
+const handleLoginTeacher = (e) => {
+  e.preventDefault()
+  const newUser = {
+    TENDN: userTc,
+    PASSWORD: password,
+  }
+  dispatch(loginTeacher(newUser, navigate))
+}
 
 
   return (
@@ -40,10 +56,11 @@ const Login = () => {
             </div>
             <div className="login_body_form">
               <div className="login_body_form_container">
-                <div className="login_body_form_title">Đăng Nhập</div>
-                  <input className='login_input' placeholder='username' onChange={(e) => setUsetest(e.target.value)} />
-                  <input type='password' className='login_input' placeholder='password' />
-                  <button className='login_btn'>Đăng Nhập</button>
+                <div className="login_body_form_title">Đăng Nhập / Giáo viên</div>
+                  <input className='login_input' placeholder='username' onChange={(e) => setUserTc(e.target.value)} />
+                  <input type='password' className='login_input' placeholder='password' onChange={(e) => setPassword(e.target.value)} />
+                  <button className='login_btn' onClick={handleLoginTeacher}>Đăng Nhập</button>
+                  <Link to={"/loginStudent"} style={{color: 'blue', fontSize: 14, textAlign: 'end'}}>Đăng nhập / Học sinh</Link>
                 </div>
             </div>
           </div>
@@ -54,4 +71,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default LoginTeacher

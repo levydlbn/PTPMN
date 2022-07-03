@@ -25,10 +25,10 @@ const teacherSchema = mongoose.Schema({
         type: String,
         require: true
     },
-    TYPE: {
+    USERTYPE: {
         type: String,
         require: true,
-        default: "GV"
+        default: "teacher",
     }
 }, {
     collection: 'Teacher'

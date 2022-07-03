@@ -19,21 +19,23 @@ const DetailPlanNew = () => {
 
   const planNewDetails = useSelector(state => state.planNewDetails)
   
-  const {loading, error, plannew} = planNewDetails
+  const {loading, plannew} = planNewDetails
 
 
  
   
   useEffect(() => {
     dispatch(listPlanNewDetails(id))
-  }, [dispatch])
+  }, [id,dispatch])
 
   return (
     <div>
       <Header />
       <Navbar />
       {loading === true
-       ? <Loading /> :
+       ? <div style={{paddingTop: 200}}>
+           <Loading />
+       </div>  :
       <div style={{paddingTop: 190}} className='DetailPlanNew_container'>
         <div className='DetailPlanNew_content'>
           <h2>{plannew.TIEUDE}</h2>

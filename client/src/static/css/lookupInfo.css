@@ -1,0 +1,133 @@
+.lookupinfo_container {
+    max-width: 1200px;
+    min-height: 360px;
+    margin: auto;
+    padding: 210px 30px 30px 30px;
+}
+
+.lookupinfo_content {
+    display: flex;
+}
+
+.lookupinfo_content_left {
+    width: 25%;
+}
+
+.lookupinfo_content_right {
+    width: 75%;
+}
+
+.showSchoolyearbtn {
+    width: 80%;
+    height: 46px;
+    background-color: white;
+    border: none;
+    font-size: 24px;
+    color: rgb(121, 121, 255);
+    border-bottom: 2px solid #999;
+}
+
+.showSchoolyearbtn:hover {
+    background-color: rgb(70, 70, 255);
+    color: white;
+    cursor: pointer;
+}
+
+.schoolyear_item {
+    width: 80%;
+    height: 32px;
+    padding: 6px 0 6px 0;
+    background-color: rgb(224, 240, 255);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid black;
+}
+
+.schoolyear_item:hover {
+    background-color: rgb(49, 49, 198);
+    color: white;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.listclass {}
+
+.class_item {
+    width: 80%;
+    height: 28px;
+    background-color: rgb(235, 235, 235);
+    text-align: center;
+    border-bottom: 1px solid rgb(192, 192, 192);
+    border-radius: 2px;
+    color: black;
+}
+
+.class_item:hover {
+    background-color: rgb(89, 90, 91);
+    cursor: pointer;
+    color: white;
+    font-size: 18px;
+}
+
+.content_right_title {
+    text-align: center;
+    font-size: 20px;
+    color: blue;
+    padding-bottom: 16px;
+    border-bottom: 2px solid rgb(166, 166, 166);
+}
+
+.thongke_siso {
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.siso_tong {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 50px;
+    border-radius: 25px;
+    background-color: rgb(255, 137, 26);
+    color: white;
+}
+
+.thongke_chart {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+@media (min-width: 1200px) {
+    .thongke_chart {
+        margin: 20px 0px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+}
+
+.academic_chart {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.academic_chart p {
+    font-size: 22px;
+}
+
+.chart_gioitinh {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.chart_gioitinh p {
+    font-size: 22px;
+}

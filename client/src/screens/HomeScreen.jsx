@@ -7,6 +7,21 @@ import IconTelephone from '../components/IconTelephone'
 import Navbar from '../components/Navbar'
 
 const HomeScreen = () => {
+
+  // const navigate = useNavigate()
+
+  // const userStudent = useSelector(state => state.studentLogin)
+
+  // const {loading, error, user} = userStudent
+
+  // console.log(loading, error, user)
+
+  // useEffect(() => {
+  //   if(loading === true) {
+  //     navigate("/loginStudent")
+  //   }
+  // }, [])
+
   return (
     <>
         <Header />

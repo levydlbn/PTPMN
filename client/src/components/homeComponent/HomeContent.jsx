@@ -13,12 +13,11 @@ const HomeContent = () => {
 
   const planNewList = useSelector(state => state.planNewList)
   
-  const {loading, error, plannews} = planNewList
+  const {loading, plannews} = planNewList
 
   const planList = plannews.filter(item => item.TYPE === "kehoach")
   const newList = plannews.filter(item => item.TYPE === "tintuc")
   
-  console.log(plannews, loading, error, planList)
   useEffect(() => {
     dispatch(listPlanNew())
   }, [dispatch])
@@ -37,7 +36,8 @@ const HomeContent = () => {
               <div className='homebody_content_plan'>
                 <div className='homebody_plan_title'>KẾ HOẠCH</div>
                 <div className='homebody_plan_content'>
-                  {planList.map(item => <div className='plan_item'>
+                  {planList.map(item => (
+                    <div key={item._id} className='plan_item'>
                     <div className='plan_item_time'>{item.THOIGIAN}</div>
                     <Link to={`/displayKehoach/${item._id}`}>
                     <div className='plan_item_title'>
@@ -45,13 +45,15 @@ const HomeContent = () => {
                       <span>{item.THOIGIAN}</span>
                     </div>
                     </Link>
-                  </div>)}
+                  </div>
+                  ) )}
                 </div>
               </div>
               <div className='homebody_content_news'>
                 <div className='homebody_news_title'>TIN TỨC</div>
                 <div className='homebody_news_content'>
-                {newList.map(item => <div className='plan_item'>
+                {newList.map(item => (
+                 <div key={item._id} className='plan_item'>
                     <div className='plan_item_time'>{item.THOIGIAN}</div>
                     <Link to={`displayTintuc/${item._id}`}>
                       <div className='plan_item_title'>
@@ -59,7 +61,8 @@ const HomeContent = () => {
                         <span>{item.THOIGIAN}</span>
                       </div>
                     </Link>
-                  </div>)}
+                  </div>
+                ) )}
                 </div>
               </div>
             </div>

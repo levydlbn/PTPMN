@@ -19,7 +19,7 @@ const Notification = () => {
 
   const planNewList = useSelector(state => state.planNewList)
   
-  const {loading, error, plannews} = planNewList
+  const {loading, plannews} = planNewList
 
   useEffect(() => {
     dispatch(listPlanNew())
@@ -60,8 +60,10 @@ const Notification = () => {
         <Header />
         <Navbar />
         {loading === true 
-        ? <Loading /> : 
-        <div className="thongbao_container" style={{display: 'flex', justifyContent: 'center', flexDirection: 'column'}}>
+        ? <div style={{paddingTop: 200}}>
+             <Loading /> 
+          </div>
+       :  <div className="thongbao_container" style={{display: 'flex', justifyContent: 'center', flexDirection: 'column'}}>
             <div style={{maxWidth: 1200, margin: 'auto', padding: '20px 40px'}} className="thongbao_content">
                 <h2 style={{marginTop: 0, marginBottom: 26, paddingTop: 200, paddingBottom: 20,
                  textAlign: 'center', borderBottom: '2px solid #444', color: 'blue'}}>THÔNG BÁO</h2>

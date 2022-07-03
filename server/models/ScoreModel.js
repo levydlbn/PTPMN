@@ -11,33 +11,42 @@ const scoreSchema = mongoose.Schema({
         ref: "Student"
     },
     TOAN: {
-        type: Number,
+        type: String,
         require: true,
     },
     LY: {
-        type: Number,
+        type: String,
         require: true,
     },
     HOA: {
-        type: Number,
+        type: String,
         require: true,
     },
     SINH: {
-        type: Number,
+        type: String,
         require: true,
     },
     VAN: {
-        type: Number,
-        require: true,
-    },
-    DTB: {
-        type: Number,
-        require: true,
-    },
-    XEPLOAI: {
         type: String,
         require: true,
-    }
+    },
+    ANH: {
+        type: String,
+        require: true,
+    },
+    SU: {
+        type: String,
+        require: true
+    },
+    DIA: {
+        type: String,
+        require: true
+    },
+    GDCN: {
+        type: String,
+        require: true
+    },
+
 }, {
     collection: 'Score'
 })

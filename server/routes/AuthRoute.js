@@ -3,58 +3,154 @@ import bcrypt from 'bcrypt'
 import Student from '../models/StudentModel.js'
 import Teacher from '../models/TeacherModel.js'
 import asyncHandler from 'express-async-handler'
+import jwt from 'jsonwebtoken'
+import verifyToken from '../Middleware/verifyToken.js'
+import verityTokenTeacher from '../Middleware/verifiyTokenTeacher.js'
 
+const auth = express.Router()
 
-const login = express.Router()
+let refreshTokens = []
 
-// login for student
-login.post("/student", asyncHandler(
+// auth for student
+auth.post("/login/student", asyncHandler(
     async(req, res) => {
         try {
             const user = await Student.findOne({ TENDN: req.body.TENDN })
             if (!user) {
-                res.status(404).json("Wrong username")
+                return res.status(404).json("Wronsdfdsg username")
             }
             const validPassword = await bcrypt.compare(
                 req.body.PASSWORD,
                 user.PASSWORD
             )
             if (!validPassword) {
-                res.status(404).json("Wrong Password")
+                return res.status(404).json("Wrong Password")
             }
             if (user && validPassword) {
-                res.status(200).json(user)
+                const accessToken = jwt.sign({
+                        id: user.id,
+                        USERTYPE: user.USERTYPE
+                    },
+                    process.env.JWT_ACCESS_KEY, { expiresIn: "20d" })
+
+                const refreshToken = jwt.sign({
+                        id: user.id,
+                        USERTYPE: user.USERTYPE
+                    },
+                    process.env.JWT_REFRESH_KEY, { expiresIn: "30d" })
+
+                refreshTokens.push(refreshToken)
+
+                res.cookie("refreshToken", refreshToken, {
+                    httpOnly: true,
+                    secure: false,
+                    path: "/",
+                    sameSite: "strict",
+                })
+                const { PASSWORD, ...others } = user._doc
+                return res.status(200).json({...others, accessToken })
             }
         } catch (error) {
-            res.status(404).json(error)
+            return res.status(404).json(error)
         }
     }
 ))
 
-//login for teacher
-login.post("/teacher", asyncHandler(
+//auth for teacher
+auth.post("/login/teacher", asyncHandler(
     async(req, res) => {
         try {
             const user = await Teacher.findOne({ TENDN: req.body.TENDN })
             if (!user) {
-                res.status(404).json("Wrong username")
+                return res.status(404).json("Wrong username")
             }
             const validPassword = await bcrypt.compare(
                 req.body.PASSWORD,
                 user.PASSWORD
             )
             if (!validPassword) {
-                res.status(404).json("Wrong Password")
+                return res.status(404).json("Wrong Password")
             }
             if (user && validPassword) {
-                res.status(200).json(user)
+                const accessToken = jwt.sign({
+                        id: user.id,
+                        USERTYPE: user.USERTYPE
+                    },
+                    process.env.JWT_ACCESS_KEY, { expiresIn: "20d" })
+                const refreshToken = jwt.sign({
+                        id: user.id,
+                        USERTYPE: user.USERTYPE
+                    },
+                    process.env.JWT_REFRESH_KEY, { expiresIn: "30d" })
+
+                refreshTokens.push(refreshToken)
+
+                res.cookie("refreshToken", refreshToken, {
+                    httpOnly: true,
+                    secure: false,
+                    path: "/",
+                    sameSite: "strict",
+                })
+                const { PASSWORD, ...others } = user._doc
+                return res.status(200).json({...others, accessToken })
             }
         } catch (error) {
-            res.status(404).json(error)
+            return res.status(404).json(error)
         }
     }
 ))
 
+auth.post("/refreshToken", asyncHandler(
+        async(req, res) => {
+            const refreshToken = req.cookies.refreshToken
+            if (!refreshToken) return res.status(401).json("You're not authenticated")
+            if (!refreshTokens.includes(refreshToken)) {
+                return res.status(403).json("Refresh token is not valid")
+            }
+            jwt.verify(refreshToken, process.env.JWT_REFRESH_KEY, (err, user) => {
+                if (err) {
+                    console.log(err)
+                }
+                refreshTokens = refreshTokens.filter((token) => token !== refreshToken)
+                    // tao moi accesstoken
+                const newAccessToken = jwt.sign({
+                        id: user.id,
+                        USERTYPE: user.USERTYPE
+                    },
+                    process.env.JWT_ACCESS_KEY, { expiresIn: "20s" })
+                const newRefreshToken = jwt.sign({
+                        id: user.id,
+                        USERTYPE: user.USERTYPE
+                    },
+                    process.env.JWT_REFRESH_KEY, { expiresIn: "30d" })
+
+                refreshTokens.push(newRefreshToken)
+
+                res.cookie("refreshToken", newRefreshToken, {
+                    httpOnly: true,
+                    secure: false,
+                    path: "/",
+                    sameSite: "strict",
+                })
+                return res.status(200).json({ accessToken: newAccessToken })
+            })
+        })
+
+)
 
 
-export default login
+//Log Out Student
+auth.post("/logout/student", verifyToken, async(req, res) => {
+    req.session = null
+    return res.status(200).json({})
+})
+
+//Log Out Teacher
+auth.post("/logout/teacher", verityTokenTeacher, async(req, res) => {
+    req.session = null
+    return res.status(200).json("Logout success")
+})
+
+
+
+export default auth
