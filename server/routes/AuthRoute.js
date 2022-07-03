@@ -15,24 +15,6 @@ let refreshTokens = []
 auth.post("/login/student", asyncHandler(
     async(req, res) => {
         try {
-            const user = await Student.findOne({ TENDN: req.body.TENDN })
-            if (!user) {
-                return res.status(404).json("Wronsdfdsg username")
-            }
-            const validPassword = await bcrypt.compare(
-                req.body.PASSWORD,
-                user.PASSWORD
-            )
-            if (!validPassword) {
-                return res.status(404).json("Wrong Password")
-            }
-            if (user && validPassword) {
-                const accessToken = jwt.sign({
-                        id: user.id,
-                        USERTYPE: user.USERTYPE
-                    },
-                    process.env.JWT_ACCESS_KEY, { expiresIn: "20d" })
-
                 const refreshToken = jwt.sign({
                         id: user.id,
                         USERTYPE: user.USERTYPE
@@ -55,6 +37,7 @@ auth.post("/login/student", asyncHandler(
         }
     }
 ))
+
 
 //auth for teacher
 auth.post("/login/teacher", asyncHandler(
@@ -148,7 +131,7 @@ auth.post("/logout/student", verifyToken, async(req, res) => {
 //Log Out Teacher
 auth.post("/logout/teacher", verityTokenTeacher, async(req, res) => {
     req.session = null
-    return res.status(2000).json("Logout success")
+    return res.status(200).json("Logout success")
 })
 
 
